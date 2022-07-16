@@ -1,0 +1,9 @@
+version: '3'
+services:
+  webapp1:
+    image: nginx
+    ports:
+      - "8000:80"
+        #use docker-compose up -d command to make container
+        #docker-compose down will delete all the created config
+

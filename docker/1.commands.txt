@@ -1,0 +1,109 @@
+docker image ls
+docker search ubuntu
+docker image pull ubuntu:14.04
+docker container run ubuntu:14.04 cat /etc/os-release
+docker container ls -a
+docker container rm f087609faa23
+docker container rm relaxed_kilby
+
+#detach and run in background
+docker container run -d ubuntu:14.04 sleep 30
+
+#interactive option
+docker container run -it ubuntu:14.04 /bin/bash
+#ctrl + pq to detach from inside the container
+
+docker container stop # --time, -t to wait for seconds before kill, default is 10s
+
+docker container start # --atach or -a to attach STDOUT/STDERR # --detach-keys, over-ride the key seq for detaching the container # --interactive or -i, attach container's STDIN
+
+docker container inspect "containername"
+# options include --format, to format the output 
+# --size to display total file sizes
+# --type, returen JSON for specified type
+
+docker image inspect ubuntu:14.04
+docker volume inspect abc
+docker network inspect abc
+
+docker container logs abc
+# -f or --follow option to see logs continously
+
+docker container restart
+
+docker container rename old new
+
+# port mapping
+docker container run -itd -p 3600:80 nginx
+
+# attach
+docker container attach abc
+
+#kill
+docker container kill abc
+
+#wait
+docker container wait
+# to show the exit code
+
+docker container pause abc
+docker container unpause abc
+
+docker container prune # to delete all stopped containers
+
+#docker run = docker create + docker start
+
+docker container create ubuntu:14.04 sleep 60
+docker container start abc
+
+docker container diff # to inspect changes to files and directory on a container's file system
+
+docker container cp containerid:/path/in/container /path/in/hostmachine # from container to host
+
+#export and import
+docker container export # to export container's file system as tar file
+docker container export abc -o myubuntu_tree_git.tar
+
+docker image import myubuntu_tree_git.tar myubuntu_tree_git
+
+# make image from container
+docker container commit abc newubuntu
+
+# push image to docker hub
+docker tag existing_image hubuser/repo-name[:tag]
+docker login
+username
+password
+docker push abc
+
+docker image ls
+docker image ls --format '{{.ID}} , {{.Repository}}
+docker image ls --format '{{.ID}} , {{.Repository}} - {{.Tag}}'
+
+# to check history
+docker image history ubuntu:14.04
+
+docker image rm abc
+docker image inspect
+docker image prune
+
+# save and load image to tar file
+
+docker image save
+docker save myimage > myimage.tar
+docker save --output myimage.tar myimage 
+
+docker image load
+docker image load < myimage.tar
+docker image load --input myimage.tar
+
+#networking
+docker network create test
+# dns is disabled in by default bridge network but is enabled in newly created bridge networks
+docker container run -itd --network=test ubuntu:14.04 bash
+#containers in the same network can ping each other with id
+# host network is like using same config as of the host nic
+docker container run -it --network none ubuntu:14.04 bash
+docker network connect/disconnect command	# multiple networks can be attached to a container
+docker network disconnect test 1a5752e79f47
+docker network rm/prune

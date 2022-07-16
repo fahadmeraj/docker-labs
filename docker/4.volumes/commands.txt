@@ -1,0 +1,11 @@
+docker volume ls
+docker container run -itd -v 997a7e220305eb30a9307c686648f9417f06509e0c9ce28cc4fc2028c513b395:/var/lib/mysql mysql
+a9b9f511d66571b993fa2084de0a2f2dfafab416017c1d2081d8f9ccbc035c46
+
+# to create and mount and volume, use below command
+docker container run -d --name xyz_com_database12 -v abc:/var/lib/mysql -e MYSQL_ALLOW_EMPTY_PASSWORD=true mysql
+9fac9587edfd351f5dc42aadad9d6619f9fa77ae439357d86454f6f7b761bb65
+
+docker volume rm abc
+docker volume prune
+

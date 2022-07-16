@@ -1,0 +1,14 @@
+docker-compose create # to create a container, neither start it, neither create network and volume
+docker-compose ps # to check status of containers
+docker-compose pause # to pause the containers
+docker-compose unpause # to unpause the containers
+docker-compose kill # to kill the container
+docker-compose port containername portno # to map host post to container port
+docker-compose logs # to check container logs
+docker-compose exec # to run commands inside containers
+docker-compose run # create and run a new container
+docker-compose restart # to restart a container
+docker-compose pull # pull the images that are being used in docker-compose.yml file
+docker-compose scale webapp1=4 webapp2=2 # to scale current containers
+docker-compose top # to display containers with runnig processes inside each container
+

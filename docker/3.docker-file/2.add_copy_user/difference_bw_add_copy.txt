@@ -1,0 +1,2 @@
+add copy and decompress
+copy only copies the compressed file

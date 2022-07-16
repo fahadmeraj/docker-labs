@@ -1,0 +1,22 @@
+docker container run -d -p 5000:5000 --name simple_registry registry
+docker container ls
+curl http://127.0.0.1:5000/v2/_catalog
+docker container inspect abc # and check the mount section
+docker image ls
+docker image tag redis 127.0.0.1:5000/redis
+docker image ls
+docker image push 127.0.0.1:5000/redis
+curl http://127.0.0.1:5000/v2/_catalog
+docker image ls
+docker image rm 127.0.0.1:5000/redis:latest redis:latest
+docker image pull 127.0.0.1:5000/redis:latest
+# we can only tag with localhost, if we tag with ip then we have to use https and secure channel
+# to allow insecure registries
+docker image tag redis 192.168.1.11:5000/redis
+cat /etc/docker/daemon.json
+{
+        "insecure-registries": ["192.168.1.11:5000"]
+}
+service docker restart
+docker image push 192.168.1.11:5000/redis
+

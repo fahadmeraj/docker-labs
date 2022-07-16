@@ -1,0 +1,2 @@
+docker container run -it -v /home/fahad/docker/bind:/tmp/test/ ubuntu 
+docker container run -itd -v bind:/tmp/test/ ubuntu

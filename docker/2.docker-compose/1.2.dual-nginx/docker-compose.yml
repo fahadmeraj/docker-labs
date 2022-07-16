@@ -1,0 +1,14 @@
+version: '3'
+services:
+  webapp1:
+    image: nginx
+    ports:
+      - "8000:80"
+  webapp2:
+    image: nginx
+    ports:
+      - "8001:80"
+        #docker-compose up -d will only recreate the container if there are changes. for e.g. if we change the port
+        
+#docke-compose.yml file name is mandatory. different file name will trigger an error
+#if we have file with different name, then we have to mention with docker-compose -f command
